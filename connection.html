@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>ACTB_Connection</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+</head>
+<body style="background-color:rgb(203, 203, 20);text-align: center;">
+    <form name="frm1" >
+       
+        <h1 style="color: rgb(14, 56, 14);">ACTB Connection Portal</h1><br>
+        <tr>
+            <div class="col-lg-12">
+            <label>Customer Name: &nbsp;</label>
+            <input  type="text" placeholder="Enter the customer name" id="Cname" name="name" pattern="[a-zA-Z_.\s]+">
+            </div><br>
+        </tr>
+        <tr>
+            <div class="col-lg-12">
+            <label>Customer Email: &nbsp;</label>
+            <input  type="email" placeholder="abc@abc.com" id="Cmail" name="mail" />
+            </div><br>
+        </tr>
+        <tr>
+            <div class="col-lg-12">
+            <label>Mobile number: &nbsp;</label>
+            <input  type="tel" placeholder="Enter mob number" id="Cmob" name="mob" pattern="[0-9]{10}" required />
+            </div><br>
+        </tr>
+       
+        <tr>
+            <label>Type of broadband</label> &nbsp;   &nbsp;
+            <select  name="bb" id="txtBB" onchange="GetType()">
+                <option value="-1">Pre</option>
+                <option value="post">Post</option>
+            </select><br><br>
+
+        </tr>
+        <tr>
+            <label>Scheme Name: </label> &nbsp;   &nbsp;
+            <input type="radio" name="Scheme" value="Local" onchange="GetScheme()" /> Local
+            &nbsp;   &nbsp;
+            <input type="radio" name="Scheme"  value="STD" onchange="GetScheme()" /> STD
+            &nbsp;   &nbsp;
+            <input type="radio" name="Scheme" value="FullTalkTime" onchange="GetScheme()" />Full Talk-Time
+            &nbsp;   &nbsp;
+        </tr><br><br>
+        <tr>
+            <div class="col-lg-12">
+            <label>Connection duration: &nbsp;</label>
+            <select  name="dur" id="txtDur" onchange="GetDuration()">
+                <option value="1"> 1 </option>
+                <option value="2"> 2</option>
+                <option value="3"> 3</option>
+                <option value="4"> 4</option>
+                <option value="5"> 5</option>
+                <option value="6"> 6</option>
+                <option value="7"> 7</option>
+                <option value="8"> 8</option>
+                <option value="9"> 9</option>
+                <option value="10"> 10</option>
+                <option value="11"> 11</option>
+                <option value="12"> 12</option>
+            </select><br><br>
+            </div><br>
+        </tr>
+
+        <tr>
+            <input type="button" value="Calculate Bill Amount" onclick="Calculate()" /> &nbsp;   &nbsp;
+            <input type="reset" value="Reset" onclick="Reset()" />
+        </tr>
+        <div id="result">
+
+        </div>
+ 
+    </form>
+    
+    <script type="text/javascript">
+         var scheme;
+         var type;
+         var duration = frm1.dur.value;
+         var show =  document.getElementById("result");
+
+         function GetScheme(){
+            
+            var schm = frm1.Scheme.value;
+            if(schm=="Local")
+            scheme =  "Local";
+            if(schm=="STD")
+            scheme =  "STD";
+            if(schm=="FullTalkTime")
+            scheme =  "FullTalkTime";
+         }
+         function GetType(){
+            
+            var prepost = frm1.bb.value;
+            if(prepost=="-1")
+            type =  "Pre";
+            if(prepost=="post")
+            type = "Post";
+            
+         }
+         function GetDuration(){
+            var dur = frm1.dur.value;
+            if(dur=="1")
+            duration =  "1";
+            if(dur=="2")
+            duration =  "2";
+            if(dur=="3")
+            duration =  "3";
+            if(dur=="4")
+            duration =  "4";
+            if(dur=="5")
+            duration =  "5";
+            if(dur=="6")
+            duration =  "6";
+            if(dur=="7")
+            duration =  "7";
+            if(dur=="8")
+            duration =  "8";
+            if(dur=="9")
+            duration =  "9";
+            if(dur=="10")
+            duration =  "10";
+            if(dur=="11")
+            duration =  "11";
+            if(dur=="12")
+            duration =  "12";
+         }
+         
+         function Calculate(){
+          
+            var bill;
+            if (scheme=="Local") {
+                if (type=="Pre") {
+                    bill = duration*200 + 75;
+                } else {
+                     bill = duration*200 + 150;
+                }
+            } 
+            else if (scheme=="STD") {
+                if (type=="Pre") {
+                    bill = duration*350 + 75;
+                } else {
+                    bill = duration*350 + 150;
+                }
+            } 
+            else if (scheme=="FullTalkTime") {
+                if (type=="Pre") {
+                    bill = duration*500 + 75;
+                } else {
+                    bill = duration*500 + 150;
+                }
+            } 
+            else{
+                bill = "Something went wrong";
+            }
+           show.innerHTML = bill;
+                
+         }
+         function Reset(){
+            show.innerHTML = ""; 
+         }
+           
+        </script>
+</body>
+</html>
