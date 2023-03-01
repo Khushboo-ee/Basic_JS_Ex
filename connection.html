@@ -70,7 +70,7 @@
         <tr>
             <input type="button" value="Calculate Bill Amount" onclick="Calculate()" /> &nbsp;   &nbsp;
             <input type="reset" value="Reset" onclick="Reset()" />
-        </tr>
+        </tr><br><br>
         <div id="result">
 
         </div>
@@ -157,7 +157,7 @@
             else{
                 bill = "Something went wrong";
             }
-           show.innerHTML = bill;
+           show.innerHTML = "Total Bill amount to be paid: "+ bill;
                 
          }
          function Reset(){
